@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {"com.thunder.learn.controller", "com.thunder.learn.configuration",
-        "com.thunder.learn.service", "com.thunder.learn.repository"})
+        "com.thunder.learn.service", "com.thunder.learn.repository", "com.thunder.learn.configuration"})
 @EntityScan("com.thunder.learn.vo")
 @EnableJpaRepositories("com.thunder.learn.repository")
 public class LearnApp {

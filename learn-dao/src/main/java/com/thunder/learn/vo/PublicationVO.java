@@ -9,31 +9,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity()
+@Entity
 @Table(name = "publication")
 public class PublicationVO extends BaseVO {
 
 
-    private Long id;
-    private String text;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto généré
     @Column(name = "id")
+    private Long id;
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name = "text")
-    public String getText() {
-        return text;
+
+    @Column(name = "enonce")
+    private String enonce;
+    public String getEnonce() {
+        return enonce;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setEnonce(String text) {
+        this.enonce = text;
     }
 }

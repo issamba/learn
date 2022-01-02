@@ -6,8 +6,34 @@ import com.thunder.learn.entity.BaseWVO;
 public class PublicationWVO extends BaseWVO {
 
     private Integer id;
-    private String text;
+    private String enonce;
+    private boolean blocked;
+    private boolean duplicated;
+    private boolean resolved;
 
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public boolean isDuplicated() {
+        return duplicated;
+    }
+
+    public void setDuplicated(boolean duplicated) {
+        this.duplicated = duplicated;
+    }
+
+    public boolean isResolved() {
+        return resolved;
+    }
+
+    public void setResolved(boolean resolved) {
+        this.resolved = resolved;
+    }
 
     public Integer getId() {
         return id;
@@ -17,11 +43,11 @@ public class PublicationWVO extends BaseWVO {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getEnonce() {
+        return enonce;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setEnonce(String enonce) {
+        this.enonce = enonce;
     }
 }
