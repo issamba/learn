@@ -2,12 +2,17 @@ package com.thunder.learn.service.impl;
 
 import com.google.common.base.Preconditions;
 import com.thunder.learn.BaseService;
-import com.thunder.learn.PublicationService;
 import com.thunder.learn.bvo.PublicationBVO;
 import com.thunder.learn.repository.PublicationRepository;
+import com.thunder.learn.service.PublicationService;
+import com.thunder.learn.vo.PublicationVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,24 +29,42 @@ public class PublicationServiceImpl extends BaseService implements PublicationSe
 
     @Override
     public PublicationBVO getPublication(Integer id) {
-        return null;
+        return voToBvo(publicationRepository.getById(id), PublicationBVO.class);
     }
 
     @Override
-    public PublicationBVO ModifyPubliction(PublicationBVO publication) {
-        return null;
-    }
-
-    @Override
-    public PublicationBVO createPublication(PublicationBVO publication) {
+    @Transactional
+    public PublicationBVO ModifyPubliction(@RequestBody PublicationBVO publication) {
         Preconditions.checkNotNull(publication.getEnonce());
         Preconditions.checkArgument(publication.getEnonce().length() > 0);
-        return null;
+        PublicationVO entityToBePersisted = bvoToVo(publication, PublicationVO.class);
+        return voToBvo(publicationRepository.saveAndFlush(entityToBePersisted), PublicationBVO.class);
     }
 
     @Override
-    public void deletePublication(Integer idPublication) {
+    @Transactional
+    public PublicationBVO createPublication(@RequestBody PublicationBVO publication) {
+        Preconditions.checkNotNull(publication.getEnonce());
+        Preconditions.checkArgument(publication.getEnonce().length() > 0);
+        PublicationVO entityToBePersisted = bvoToVo(publication, PublicationVO.class);
+        entityToBePersisted.setDateCreation(new Date());
+        return voToBvo(publicationRepository.saveAndFlush(entityToBePersisted), PublicationBVO.class);
+    }
 
+
+    @Override
+    @Transactional
+    @Modifying
+    public void deletePublication(Integer idPublication) {
+        publicationRepository.deleteById(idPublication);
+    }
+
+    @Override
+    @Transactional
+    public List<PublicationBVO> getMyPublications(Integer idUtilisateur) {
+        List<PublicationVO> myPublications = publicationRepository.findAllByCreateur_idUtilisateur(idUtilisateur);
+        myPublications.forEach(el -> el.setCommentaires(null));
+        return listVoToBvo(myPublications, PublicationBVO.class);
     }
 
 

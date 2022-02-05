@@ -2,22 +2,22 @@ package com.thunder.learn.controller;
 
 import com.thunder.learn.entity.BaseBVO;
 import com.thunder.learn.entity.BaseWVO;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.dozer.Mapper;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public abstract class BaseController {
 
-    @Autowired
-    private ModelMapper modelMapper;
+    @Resource
+    private Mapper mapper;
 
     public <T extends BaseBVO, S extends BaseWVO> T wvoToBvo(S wvo, Class<? extends BaseBVO> bvoClass) {
 
         if (wvo != null) {
-            return (T) modelMapper.map(wvo, bvoClass);
+            return (T) mapper.map(wvo, bvoClass);
         } else {
             return null;
         }
@@ -40,7 +40,7 @@ public abstract class BaseController {
     public <T extends BaseWVO, S extends BaseBVO> T bvoToWvo(S bvo, Class<? extends BaseWVO> wvoClass) {
 
         if (bvo != null) {
-            return (T) modelMapper.map(bvo, wvoClass);
+            return (T) mapper.map(bvo, wvoClass);
         } else {
             return null;
         }

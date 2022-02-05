@@ -1,4 +1,4 @@
-package com.thunder.learn;
+package com.thunder.learn.service;
 
 import com.thunder.learn.bvo.PublicationBVO;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,4 +14,6 @@ public interface PublicationService {
     PublicationBVO ModifyPubliction(PublicationBVO publication);
     PublicationBVO createPublication(PublicationBVO publication);
     void deletePublication(Integer idPublication);
+
+    List<PublicationBVO> getMyPublications(Integer idUtilisateur);
 }

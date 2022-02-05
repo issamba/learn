@@ -27,11 +27,21 @@
             <version>r05</version>
         </dependency>
         <dependency>
-            <groupId>com.thunder.learn</groupId>
-            <artifactId>learn-manager</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>test</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.mapstruct</groupId>-->
+<!--            <artifactId>mapstruct</artifactId>-->
+<!--            <version>1.4.2.Final</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.mapstruct</groupId>-->
+<!--            <artifactId>mapstruct-processor</artifactId>-->
+<!--            <version>1.4.2.Final</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
 </project>

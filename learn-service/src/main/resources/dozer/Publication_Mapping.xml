@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+
+    <mapping wildcard="true" map-null="false" stop-on-errors="false">
+        <class-a>com.thunder.learn.vo.PublicationVO
+        </class-a>
+        <class-b>com.thunder.learn.bvo.PublicationBVO
+        </class-b>
+        <field>
+            <a>createur.idUtilisateur</a>
+            <b>idCreateur</b>
+        </field>
+        <field>
+            <a>categorie.idCategorie</a>
+            <b>idCategorie</b>
+        </field>
+        <field>
+            <a>type.idType</a>
+            <b>idType</b>
+        </field>
+
+    </mapping>
+</mappings>

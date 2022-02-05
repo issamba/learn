@@ -1,4 +1,4 @@
-package com.thunder.learn.configuration;
+package com.thunder.learn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -15,6 +15,10 @@ public interface PublicationEndpoint {
     @GetMapping("/getAll")
     List<PublicationWVO> getPublications();
 
+    @GetMapping("/getMyPublication")
+    List<PublicationWVO> getMyPublications(Integer idUtilisateur);
+
+
     @GetMapping("/")
     PublicationWVO getPublication(@RequestParam Integer id);
 
