@@ -2,6 +2,7 @@ package com.thunder.learn.service.impl;
 
 import com.google.common.base.Preconditions;
 import com.thunder.learn.BaseService;
+import com.thunder.learn.bvo.CommentaireBVO;
 import com.thunder.learn.bvo.PublicationBVO;
 import com.thunder.learn.repository.PublicationRepository;
 import com.thunder.learn.service.PublicationService;
@@ -12,8 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PublicationServiceImpl extends BaseService implements PublicationService {
@@ -29,7 +32,11 @@ public class PublicationServiceImpl extends BaseService implements PublicationSe
 
     @Override
     public PublicationBVO getPublication(Integer id) {
-        return voToBvo(publicationRepository.getById(id), PublicationBVO.class);
+        Comparator<CommentaireBVO> comparator = (a, b) -> a.getDate().after(b.getDate()) ? 1 : -1;
+        PublicationBVO publication = voToBvo(publicationRepository.getById(id), PublicationBVO.class);
+        List<CommentaireBVO> sorted = publication.getCommentaires().stream().sorted(comparator).collect(Collectors.toList());
+        publication.setCommentaires(sorted);
+        return publication;
     }
 
     @Override
@@ -65,6 +72,13 @@ public class PublicationServiceImpl extends BaseService implements PublicationSe
         List<PublicationVO> myPublications = publicationRepository.findAllByCreateur_idUtilisateur(idUtilisateur);
         myPublications.forEach(el -> el.setCommentaires(null));
         return listVoToBvo(myPublications, PublicationBVO.class);
+    }
+
+    @Override
+    @Transactional
+    public List<PublicationBVO> getTrendingPublications() {
+        List<Integer> pubs = publicationRepository.findTrendingPublication().stream().limit(10).collect(Collectors.toList());
+        return pubs.stream().map(this::getPublication).collect(Collectors.toList());
     }
 
 

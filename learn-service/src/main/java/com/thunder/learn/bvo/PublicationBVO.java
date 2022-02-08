@@ -2,9 +2,11 @@ package com.thunder.learn.bvo;
 
 import com.thunder.learn.entity.BaseBVO;
 
+import java.util.List;
+
 public class PublicationBVO extends BaseBVO {
 
-    private Integer id;
+    private Integer idPublication;
     private String enonce;
     private boolean blocked;
     private boolean duplicated;
@@ -12,13 +14,17 @@ public class PublicationBVO extends BaseBVO {
     private Integer idCreateur;
     private Integer idCategorie;
     private Integer idType;
-
+    private List<CommentaireBVO> commentaires;
+    private String libelleCategorie;
+    private String libelleType;
+    private String nomCreateur;
 
     public PublicationBVO() {
+
     }
 
     public PublicationBVO(Integer id) {
-        this.id = id;
+        this.idPublication = id;
         this.blocked = false;
         this.resolved = false;
         this.duplicated = false;
@@ -55,12 +61,12 @@ public class PublicationBVO extends BaseBVO {
         this.resolved = resolved;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdPublication() {
+        return idPublication;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdPublication(Integer idPublication) {
+        this.idPublication = idPublication;
     }
 
     public String getEnonce() {
@@ -94,5 +100,38 @@ public class PublicationBVO extends BaseBVO {
 
     public void setIdType(Integer idType) {
         this.idType = idType;
+    }
+
+    public List<CommentaireBVO> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<CommentaireBVO> commentaires) {
+        this.commentaires = commentaires;
+    }
+
+
+    public String getLibelleType() {
+        return libelleType;
+    }
+
+    public void setLibelleType(String libelleType) {
+        this.libelleType = libelleType;
+    }
+
+    public String getLibelleCategorie() {
+        return libelleCategorie;
+    }
+
+    public void setLibelleCategorie(String libelleCategorie) {
+        this.libelleCategorie = libelleCategorie;
+    }
+
+    public String getNomCreateur() {
+        return nomCreateur;
+    }
+
+    public void setNomCreateur(String nomCreateur) {
+        this.nomCreateur = nomCreateur;
     }
 }

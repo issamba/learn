@@ -1,8 +1,9 @@
-package com.thunder.learn.wvo;
+package com.thunder.learn.bvo;
 
+import com.thunder.learn.entity.BaseBVO;
 import com.thunder.learn.entity.BaseWVO;
 
-public class UtilisateurWVO extends BaseWVO {
+public class UtilisateurBVO extends BaseBVO {
 
     private Integer idUtilisateur;
     private String nom;

@@ -13,6 +13,10 @@
             <b>idCreateur</b>
         </field>
         <field>
+            <a>createur.login</a>
+            <b>nomCreateur</b>
+        </field>
+        <field>
             <a>commentaireParent.idCommentaire</a>
             <b>idCommentaireParent</b>
         </field>

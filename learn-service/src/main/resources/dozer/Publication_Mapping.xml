@@ -13,12 +13,24 @@
             <b>idCreateur</b>
         </field>
         <field>
+            <a>createur.login</a>
+            <b>nomCreateur</b>
+        </field>
+        <field>
             <a>categorie.idCategorie</a>
             <b>idCategorie</b>
         </field>
         <field>
             <a>type.idType</a>
             <b>idType</b>
+        </field>
+        <field>
+            <a>categorie.libelle</a>
+            <b>libelleCategorie</b>
+        </field>
+        <field>
+            <a>type.libelle</a>
+            <b>libelleType</b>
         </field>
 
     </mapping>

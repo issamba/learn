@@ -2,16 +2,20 @@ package com.thunder.learn.wvo;
 
 import com.thunder.learn.entity.BaseWVO;
 
+import java.util.Date;
 import java.util.List;
 
 public class CommentaireWVO extends BaseWVO {
 
     private Integer idCommentaire;
     private String enonce;
+    private String nomCreateur;
     private Integer checked;
     private Integer idCommentaireParent;
     private Integer idCreateur;
     private List<ReactionWVO> reactions;
+    private Date date;
+    private Integer idPublication;
 
     public Integer getIdCommentaire() {
         return idCommentaire;
@@ -59,5 +63,31 @@ public class CommentaireWVO extends BaseWVO {
 
     public void setReactions(List<ReactionWVO> reactions) {
         this.reactions = reactions;
+    }
+
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getNomCreateur() {
+        return nomCreateur;
+    }
+
+    public void setNomCreateur(String nomCreateur) {
+        this.nomCreateur = nomCreateur;
+    }
+
+
+    public Integer getIdPublication() {
+        return idPublication;
+    }
+
+    public void setIdPublication(Integer idPublication) {
+        this.idPublication = idPublication;
     }
 }

@@ -5,6 +5,7 @@ import com.thunder.learn.endpoint.rest.PublicationEndpoint;
 import com.thunder.learn.service.PublicationService;
 import com.thunder.learn.wvo.PublicationWVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/publication")
+@CrossOrigin(origins = "*" , allowedHeaders = "*")
 public class PublicationController extends BaseController implements PublicationEndpoint {
 
     @Autowired
@@ -28,6 +30,10 @@ public class PublicationController extends BaseController implements Publication
     @Override
     public List<PublicationWVO> getMyPublications(@RequestParam Integer idUtilisateur) {
         return listBvoToWvo(publicationService.getMyPublications(idUtilisateur), PublicationWVO.class);
+    }
+    @Override
+    public List<PublicationWVO> getTrendingPublications() {
+        return listBvoToWvo(publicationService.getTrendingPublications(), PublicationWVO.class);
     }
 
     @Override

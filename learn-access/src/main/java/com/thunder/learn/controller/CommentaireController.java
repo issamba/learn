@@ -7,6 +7,7 @@ import com.thunder.learn.service.CommentaireService;
 import com.thunder.learn.wvo.CommentaireWVO;
 import com.thunder.learn.wvo.ReactionWVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/commentaire")
+@CrossOrigin(origins = "*" , allowedHeaders = "*")
 public class CommentaireController extends BaseController implements CommentaireEndpoint {
 
     @Autowired
@@ -38,5 +40,10 @@ public class CommentaireController extends BaseController implements Commentaire
     @Override
     public ReactionWVO react(ReactionWVO reaction) {
         return bvoToWvo(commentaireService.react(wvoToBvo(reaction, ReactionBVO.class)), ReactionWVO.class);
+    }
+
+    @Override
+    public CommentaireWVO updateCommentaire(CommentaireWVO commentaireWVO) {
+        return bvoToWvo(commentaireService.updateCommentaire(wvoToBvo(commentaireWVO, CommentaireBVO.class)), CommentaireWVO.class);
     }
 }

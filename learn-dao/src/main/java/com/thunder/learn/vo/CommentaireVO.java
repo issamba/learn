@@ -3,6 +3,7 @@ package com.thunder.learn.vo;
 import com.thunder.learn.entity.BaseVO;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "commentaire", schema = "plateforme_sesame")
-public class CommentaireVO extends BaseVO  implements Serializable {
+public class CommentaireVO extends BaseVO implements Serializable {
 
     private static final long serialVersionUID = -1869706376738323885L;
 
@@ -29,6 +31,7 @@ public class CommentaireVO extends BaseVO  implements Serializable {
     private MembreVO createur;
     private PublicationVO publication;
     private List<ReactionVO> reactions;
+    private Date date;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +44,7 @@ public class CommentaireVO extends BaseVO  implements Serializable {
         this.idCommentaire = idCommentaire;
     }
 
+
     @Basic
     @Column(name = "enonce")
     public String getEnonce() {
@@ -52,7 +56,7 @@ public class CommentaireVO extends BaseVO  implements Serializable {
     }
 
     @Basic
-    @Column(name = "checked")
+    @Column(name = "checked", nullable = true)
     public Integer getChecked() {
         return checked;
     }
@@ -77,7 +81,7 @@ public class CommentaireVO extends BaseVO  implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_parent_cmnt", referencedColumnName = "id_commentaire")
+    @JoinColumn(name = "id_parent_cmnt", referencedColumnName = "id_commentaire", nullable = true)
     public CommentaireVO getCommentaireParent() {
         return commentaireParent;
     }
@@ -106,12 +110,23 @@ public class CommentaireVO extends BaseVO  implements Serializable {
         this.publication = publication;
     }
 
-    @OneToMany(mappedBy = "commentaire")
+    @OneToMany(mappedBy = "commentaire" , cascade = {CascadeType.REMOVE})
     public List<ReactionVO> getReactions() {
         return reactions;
     }
 
     public void setReactions(List<ReactionVO> reactions) {
         this.reactions = reactions;
+    }
+
+
+    @Basic
+    @Column(name = "date_commentaire")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

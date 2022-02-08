@@ -2,6 +2,7 @@ package com.thunder.learn.service;
 
 import com.thunder.learn.bvo.CommentaireBVO;
 import com.thunder.learn.bvo.ReactionBVO;
+import com.thunder.learn.entity.BaseBVO;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface CommentaireService {
     CommentaireBVO createCommentaire(CommentaireBVO wvoToBvo);
 
     ReactionBVO react(ReactionBVO wvoToBvo);
+
+    CommentaireBVO updateCommentaire(CommentaireBVO wvoToBvo);
 }

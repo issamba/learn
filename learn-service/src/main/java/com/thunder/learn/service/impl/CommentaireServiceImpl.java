@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,6 +42,7 @@ public class CommentaireServiceImpl extends BaseService implements CommentaireSe
     @Override
     @Transactional
     public CommentaireBVO createCommentaire(CommentaireBVO commentaire) {
+        commentaire.setDate(new Date());
         CommentaireVO created = commentaireRepositoryDAO.saveAndFlush(bvoToVo(commentaire, CommentaireVO.class));
         return voToBvo(created, CommentaireBVO.class);
     }
@@ -48,5 +51,21 @@ public class CommentaireServiceImpl extends BaseService implements CommentaireSe
     @Transactional
     public ReactionBVO react(ReactionBVO reaction) {
         return voToBvo(reactionRepository.saveAndFlush(bvoToVo(reaction, ReactionVO.class)), ReactionBVO.class);
+    }
+
+    @Override
+    @Transactional
+    @Modifying
+    public CommentaireBVO updateCommentaire(CommentaireBVO bvo) {
+        if(Integer.valueOf(1).equals(bvo.getChecked())){
+            commentaireRepositoryDAO.findAllByPublication_IdPublication(bvo.getIdPublication()).forEach(el -> {
+                el.setChecked(null);
+                commentaireRepositoryDAO.saveAndFlush(el);
+            });
+        }
+        CommentaireVO comment = commentaireRepositoryDAO.findById(bvo.getIdCommentaire()).orElseThrow(() -> new EntityNotFoundException("no comment with this id"));
+        comment.setChecked(bvo.getChecked());
+        CommentaireVO updated = commentaireRepositoryDAO.saveAndFlush(comment);
+        return voToBvo(updated, CommentaireBVO.class);
     }
 }

@@ -2,6 +2,7 @@ package com.thunder.learn.bvo;
 
 import com.thunder.learn.entity.BaseBVO;
 
+import java.util.Date;
 import java.util.List;
 
 public class CommentaireBVO extends BaseBVO {
@@ -13,6 +14,8 @@ public class CommentaireBVO extends BaseBVO {
     private Integer idCreateur;
     private Integer idPublication;
     private List<ReactionBVO> reactions;
+    private Date date;
+    private String nomCreateur;
 
     public Integer getIdCommentaire() {
         return idCommentaire;
@@ -66,7 +69,24 @@ public class CommentaireBVO extends BaseBVO {
         return idPublication;
     }
 
+
     public void setIdPublication(Integer idPublication) {
         this.idPublication = idPublication;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getNomCreateur() {
+        return nomCreateur;
+    }
+
+    public void setNomCreateur(String nomCreateur) {
+        this.nomCreateur = nomCreateur;
     }
 }
